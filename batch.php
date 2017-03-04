@@ -29,11 +29,14 @@ echo $close."<br>";
 
 $sql2 = "SELECT MAX(ltp) FROM Daily$stock";
 $high = mysqli_query($con, $sql2);
-echo $high."<br>";
+//echo $high."<br>";
+//Object of class mysqli_result could not be converted to string
+echo $high->fetch_object()->ltp;
 
 $sql3 = "SELECT MIN(ltp) FROM Daily$stock";
 $low = mysqli_query($con, $sql3);
-echo $low."<br>";
+//echo $low."<br>";
+echo $low->fetch_object()->ltp;
 
 $sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE chg = '$close'";
 $close_chg = mysqli_query($con, $sql4);
