@@ -49,10 +49,10 @@ $row = mysqli_fetch_array($low, MYSQL_ASSOC);
 $stockArray[3]=$row['lowPrice'];
 	echo $stockArray[3]."<br>";
 
-$sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE chg = '$close'";
+$sql4 = "SELECT DISTINCT chg AS closeC FROM Daily$stock WHERE chg = '$close'";
 $close_chg = mysqli_query($con, $sql4);
 $row = mysqli_fetch_array($close_chg, MYSQL_ASSOC);
-$stockArray[4]=$row['chg'];
+$stockArray[4]=$row['closeC'];
 	echo $stockArray[4]."<br>";
 
 $sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE chg = '$close'";
