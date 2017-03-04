@@ -23,7 +23,7 @@ LIMIT 1";
 $open = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($open, MYSQL_ASSOC);
 $stockArray[0]=$row['ltp'];
-echo $stockArray[0]."<br>";
+//echo $stockArray[0]."<br>";
 
 $sql1 = "SELECT ltp FROM Daily$stock
 ORDER BY id DESC
@@ -31,7 +31,7 @@ LIMIT 1";
 $close = mysqli_query($con, $sql1);
 $row = mysqli_fetch_array($close, MYSQL_ASSOC);
 $stockArray[1]=$row['ltp'];
-	echo $stockArray[1]."<br>";
+//	echo $stockArray[1]."<br>";
 
 $sql2 = "SELECT MAX(ltp) AS highPrice FROM Daily$stock";
 $high = mysqli_query($con, $sql2);
@@ -40,14 +40,14 @@ $high = mysqli_query($con, $sql2);
 //echo $high->fetch_object()->ltp;
 $row = mysqli_fetch_array($high, MYSQL_ASSOC);
 $stockArray[2]=$row['highPrice'];
-	echo $stockArray[2]."<br>";
+//	echo $stockArray[2]."<br>";
 
 $sql3 = "SELECT MIN(ltp) AS lowPrice FROM Daily$stock";
 $low = mysqli_query($con, $sql3);
 //echo $low."<br>";
 $row = mysqli_fetch_array($low, MYSQL_ASSOC);
 $stockArray[3]=$row['lowPrice'];
-	echo $stockArray[3]."<br>";
+//	echo $stockArray[3]."<br>";
 
 $closePrice = round($stockArray[1],3);
 	
@@ -55,23 +55,21 @@ $sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'
 $close_chg = mysqli_query($con, $sql4);
 $row = mysqli_fetch_array($close_chg, MYSQL_ASSOC);
 $stockArray[4]=$row['chg'];
-	echo $stockArray[4]."<br>";
+//	echo $stockArray[4]."<br>";
 
 $sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
 $close_cp = mysqli_query($con, $sql5);
 $row = mysqli_fetch_array($close_cp, MYSQL_ASSOC);
 $stockArray[5]=$row['chg_p'];
-	echo $stockArray[5]."<br>";
+//	echo $stockArray[5]."<br>";
 
 $sql6 = "SELECT DISTINCT stamp FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
 $stamp1 = mysqli_query($con, $sql6);
 $row = mysqli_fetch_array($stamp1, MYSQL_ASSOC);
 $stamp=$row['stamp'];
-$date = substr($stamp,0,10);
-$stockArray[6]=$date;
-echo $date."<br>";
+$stockArray[6] = substr($stamp,0,10);
+//	echo $stockArray[6]."<br>";
 	
-
 foreach ($stockArray as $value){
 	echo $value."<br>";
 }
