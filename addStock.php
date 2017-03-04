@@ -9,25 +9,21 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 
 $nse_stock = $_GET[ 'nse-stock' ] ;
 date_default_timezone_set("Asia/Kolkata");
-echo date('Y-m-d')."<br>";
 $date = date('Y-m-d');
 $sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock','$date')";
-
-//$result = mysqli_query($con,$sql);
-//$row = mysqli_fetch_array($result);
-//$data = $row[0];
-
-//if ($data) {
-//	echo "yes";
-//}
-//else {
+//echo substr('// [ { "id": "15274130" ,"t" : "BHEL" ,"e" : "NSE" ,"l" : "158.25" ,"l_fix" : "158.25" ,"l_cur" : "₹158.25" ,"s": "0" ,"ltt":"3:40PM GMT+5:30" ,"lt" : "Mar 3, 3:40PM GMT+5:30" ,"lt_dts" : "2017-03-03T15:40:10Z" ,"c" : "+0.05" ,"c_fix" : "0.05" ,"cp" : "0.03" ,"cp_fix" : "0.03" ,"ccol" : "chg" ,"pcls_fix" : "158.2" } ]',3);
+echo file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:" . $nse-stock . "<br>");
+if (file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:" . $nse-stock)){
 	if (mysqli_query($con, $sql) ) {
-	echo "Values have been inserted successfully\r\n"."<br>";
+		echo "Values have been inserted successfully\r\n"."<br>";
 	}
 	else {
-	echo "Error in running query";
+		echo "Error in running query";
 	}
-//}
+}else{
+	echo "Stock not listed in NSE";
+}
+
 mysqli_close($con) ;
 //echo "Connected to server closed successfully\r\n";
 ?>		
