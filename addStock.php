@@ -29,17 +29,18 @@ $sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock','$date'
 
 if (@file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:" . $nse_stock)){
 	if (mysqli_query($con, $sql) ) {
-		echo "Values have been inserted successfully\r\n"."<br>";
 		createTables($con, $nse_stock);
+		echo "$nse_stock added successfully in your NseStocks";
 	}
 	else {
-		echo "Error in inserting $nse_stock in  NseStocks";
+		echo "$nse_stock already exists in NseStocks";
 	}
 }else{
-	echo "Stock not listed in NSE";
+	echo "$nse_stock is not listed in NSE";
 }
 
 function createTables($con, $nse_stock){
+	
 	$daily = "Daily$nse_stock";
 	
 $sql = "CREATE TABLE $daily (
@@ -50,13 +51,7 @@ chg_p FLOAT NOT NULL,
 p_close FLOAT NOT NULL,
 stamp DATETIME
 )";
-	
-	if (mysqli_query($con, $sql) ) {
-		echo "$daily created successfully"."<br>";
-	}
-	else {
-		echo "Error in creating $daily table";
-	}
+	mysqli_query($con, $sql);	
 	
 $sql = "CREATE TABLE $nse_stock (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
@@ -68,13 +63,7 @@ close_chg FLOAT NOT NULL,
 close_cp FLOAT NOT NULL,
 stamp DATE
 )";
-	
-	if (mysqli_query($con, $sql) ) {
-		echo "$nse_stock created successfully"."<br>";
-	}
-	else {
-		echo "Error in creating $nse_stock table";
-	}
+	mysqli_query($con, $sql);
 }
 
 mysqli_close($con) ;
