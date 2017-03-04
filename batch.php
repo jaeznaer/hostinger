@@ -97,12 +97,9 @@ if (mysqli_multi_query($con, $sql) ) {
     // Free result set	    
       mysqli_free_result($result);
       }
-  while (mysqli_more_results($con));
+  while (mysqli_next_result($con));
 		//echo "Values have been inserted successfully in $stock"."<br>";
 	}
-else {
-	echo "Error in setting the increment";
-}
 }
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
