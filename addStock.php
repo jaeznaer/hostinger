@@ -30,10 +30,10 @@ $sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock','$date'
 if (@file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:" . $nse_stock)){
 	if (mysqli_query($con, $sql) ) {
 		createTables($con, $nse_stock);
-		echo "$nse_stock added successfully in your NseStocks";
+		echo "$nse_stock added successfully as your NSE stock";
 	}
 	else {
-		echo "$nse_stock already exists in NseStocks";
+		echo "$nse_stock already exists in your NSE stocks";
 	}
 }else{
 	echo "$nse_stock is not listed in NSE";
