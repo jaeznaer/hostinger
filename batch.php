@@ -19,7 +19,9 @@ $sql = "SELECT ltp FROM Daily$stock
 ORDER BY column_name ASC
 LIMIT 1";
 $open = mysqli_query($con, $sql);
-echo $open."<br>";
+//$stockArray = Array();
+$row = mysqli_fetch_array($open, MYSQL_ASSOC);
+echo $row['ltp'];
 
 $sql1 = "SELECT ltp FROM Daily$stock
 ORDER BY column_name DESC
