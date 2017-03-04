@@ -12,7 +12,7 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 
 foreach ($stockArray as $stock){
 	setIncrement($con, $stock);
-	fetchData($con, $stock);
+	//fetchData($con, $stock);
 	//deleteData($con, $stock);
 }
 
@@ -86,8 +86,8 @@ foreach ($stockArray as $value){
 function setIncrement($con, $stock){
 
 $sql = "SET @count = 0;";
-$sql .= "UPDATE Daily$stock SET Daily$stock.id = @count:= @count + 1";
-//$sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = 1";
+$sql .= "UPDATE Daily$stock SET Daily$stock.id = @count:= @count + 1;";
+$sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = 1";
 	
 // Execute multi query
 mysqli_multi_query($con,$sql);
