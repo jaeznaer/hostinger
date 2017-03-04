@@ -33,14 +33,28 @@ if (@file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:"
 		createTables();
 	}
 	else {
-		echo "Error in running query";
+		echo "Error in inserting $nse_stock in  NseStocks";
 	}
 }else{
 	echo "Stock not listed in NSE";
 }
 
 function createTables(){
-	echo "Creating tables";
+	$daily = "Daily$nse_stock";
+	$sql = "CREATE TABLE $daily (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+ltp FLOAT NOT NULL,
+chg FLOAT NOT NULL,
+chg_p FLOAT NOT NULL,
+p_close FLOAT NOT NULL,
+stamp DATETIME
+)";
+	if (mysqli_query($con, $sql) ) {
+		echo "Daily$nse_stock created successfully\r\n"."<br>";
+	}
+	else {
+		echo "Error in creating Daily$nse_stock table";
+	}
 }
 
 mysqli_close($con) ;
