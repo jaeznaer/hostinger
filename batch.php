@@ -11,6 +11,7 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 }
 
 foreach ($stockArray as $stock){
+	setIncrement($con, $stock);
 	fetchData($con, $stock);
 }
 
@@ -79,6 +80,17 @@ foreach ($stockArray as $value){
 //	else {
 //		echo "Error in inserting details in  $stock";
 //	}
+}
+function setIncrement($con, $stock){
+	$sql = "SET @count = 0;
+UPDATE Daily$stock SET Daily$stock.id = @count:= @count + 1;
+ALTER TABLE Daily$stock AUTO_INCREMENT = @count";
+	if (mysqli_query($con, $sql) ) {
+		echo "Values have been inserted successfully in $stock"."<br>";
+	}
+	else {
+		echo "Error in inserting details in  $stock";
+	}
 }
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
