@@ -49,23 +49,26 @@ $row = mysqli_fetch_array($low, MYSQL_ASSOC);
 $stockArray[3]=$row['lowPrice'];
 	echo $stockArray[3]."<br>";
 
-$sql4 = "SELECT DISTINCT chg AS closeC FROM Daily$stock WHERE ltp = '$stockArray[1]'";
+$closePrice = round($stockArray[1],3);
+	
+$sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
 $close_chg = mysqli_query($con, $sql4);
 $row = mysqli_fetch_array($close_chg, MYSQL_ASSOC);
-$stockArray[4]=$row['closeC'];
+$stockArray[4]=$row['chg'];
 	echo $stockArray[4]."<br>";
 
-$sql5 = "SELECT chg_p FROM Daily$stock WHERE ltp = '$stockArray[1]'";
+$sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
 $close_cp = mysqli_query($con, $sql5);
 $row = mysqli_fetch_array($close_cp, MYSQL_ASSOC);
 $stockArray[5]=$row['chg_p'];
 	echo $stockArray[5]."<br>";
 
-$sql6 = "SELECT DISTINCT stamp FROM Daily$stock WHERE ltp = '$stockArray[1]'";
+$sql6 = "SELECT DISTINCT stamp FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
 $stamp1 = mysqli_query($con, $sql6);
 $row = mysqli_fetch_array($stamp1, MYSQL_ASSOC);
 $stamp=$row['stamp'];
 $date = substr($stamp,0,10);
+$stockArray[6]=$date;
 echo $date."<br>";
 	
 
