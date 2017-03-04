@@ -20,7 +20,7 @@ if ($data) {
 }
 else {
 	if (mysqli_query($con, $sql) ) {
-	//echo "Values have been inserted successfully\r\n"."<br>";
+	echo "Values have been inserted successfully\r\n"."<br>";
 	}
 }
 mysqli_close($con) ;
