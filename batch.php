@@ -33,20 +33,20 @@ $row = mysqli_fetch_array($close, MYSQL_ASSOC);
 $stockArray[1]=$row['ltp'];
 	echo $stockArray[1]."<br>";
 
-$sql2 = "SELECT MAX(ltp) FROM Daily$stock";
+$sql2 = "SELECT MAX(ltp) AS highPrice FROM Daily$stock";
 $high = mysqli_query($con, $sql2);
 //echo $high."<br>";
 //Object of class mysqli_result could not be converted to string
 //echo $high->fetch_object()->ltp;
 $row = mysqli_fetch_array($high, MYSQL_ASSOC);
-$stockArray[2]=$row['ltp'];
+$stockArray[2]=$row['highPrice'];
 	echo $stockArray[2]."<br>";
 
-$sql3 = "SELECT MIN(ltp) FROM Daily$stock";
+$sql3 = "SELECT MIN(ltp) AS lowPrice FROM Daily$stock";
 $low = mysqli_query($con, $sql3);
 //echo $low."<br>";
 $row = mysqli_fetch_array($low, MYSQL_ASSOC);
-$stockArray[3]=$row['ltp'];
+$stockArray[3]=$row['lowPrice'];
 	echo $stockArray[3]."<br>";
 
 $sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE chg = '$close'";
