@@ -17,7 +17,17 @@ function addStockDetails($stock){
 	$json = file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:$stock",NULL,NULL,4);
 	//print_r($jdata);
 	$data = json_decode($json,true);
-	var_dump($data);
+	//var_dump($data);
+	echo $data[0]['lt_dts'];
+	echo "<br>";
+	echo $data[0]['l_fix'];
+	echo "<br>";
+	echo $data[0]['c_fix'];
+	echo "<br>";
+	echo $data[0]['cp_fix'];
+	echo "<br>";
+	echo $data[0]['pcls_fix'];
+	echo "<br>";
 }
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
