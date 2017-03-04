@@ -41,7 +41,8 @@ if (@file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:"
 
 function createTables($con, $nse_stock){
 	$daily = "Daily$nse_stock";
-	$sql = "CREATE TABLE $daily (
+	
+$sql = "CREATE TABLE $daily (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 ltp FLOAT NOT NULL,
 chg FLOAT NOT NULL,
@@ -49,11 +50,30 @@ chg_p FLOAT NOT NULL,
 p_close FLOAT NOT NULL,
 stamp DATETIME
 )";
+	
 	if (mysqli_query($con, $sql) ) {
 		echo "$daily created successfully"."<br>";
 	}
 	else {
 		echo "Error in creating $daily table";
+	}
+	
+$sql = "CREATE TABLE $nse_stock (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+open FLOAT NOT NULL,
+high FLOAT NOT NULL,
+low FLOAT NOT NULL,
+close FLOAT NOT NULL,
+close_chg FLOAT NOT NULL,
+close_cp FLOAT NOT NULL,
+stamp DATE
+)";
+	
+	if (mysqli_query($con, $sql) ) {
+		echo "$nse_stock created successfully"."<br>";
+	}
+	else {
+		echo "Error in creating $nse_stock table";
 	}
 }
 
