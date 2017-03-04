@@ -23,6 +23,7 @@ LIMIT 1";
 $open = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($open, MYSQL_ASSOC);
 $stockArray[0]=$row['ltp'];
+echo $stockArray[0]."<br>";
 
 $sql1 = "SELECT ltp FROM Daily$stock
 ORDER BY id DESC
@@ -30,6 +31,7 @@ LIMIT 1";
 $close = mysqli_query($con, $sql1);
 $row = mysqli_fetch_array($close, MYSQL_ASSOC);
 $stockArray[1]=$row['ltp'];
+	echo $stockArray[1]."<br>";
 
 $sql2 = "SELECT MAX(ltp) FROM Daily$stock";
 $high = mysqli_query($con, $sql2);
@@ -38,17 +40,20 @@ $high = mysqli_query($con, $sql2);
 //echo $high->fetch_object()->ltp;
 $row = mysqli_fetch_array($high, MYSQL_ASSOC);
 $stockArray[2]=$row['ltp'];
+	echo $stockArray[2]."<br>";
 
 $sql3 = "SELECT MIN(ltp) FROM Daily$stock";
 $low = mysqli_query($con, $sql3);
 //echo $low."<br>";
 $row = mysqli_fetch_array($low, MYSQL_ASSOC);
 $stockArray[3]=$row['ltp'];
+	echo $stockArray[3]."<br>";
 
 $sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE chg = '$close'";
 $close_chg = mysqli_query($con, $sql4);
 $row = mysqli_fetch_array($close_chg, MYSQL_ASSOC);
 $stockArray[4]=$row['chg'];
+	echo $stockArray[4]."<br>";
 
 $sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE chg = '$close'";
 $close_cp = mysqli_query($con, $sql5);
