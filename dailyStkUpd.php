@@ -11,23 +11,26 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 }
 //$sql = "INSERT INTO UserDetails (SrNo, FirstName, LastName, Email, Password, Date) VALUES (NULL, 'jaez', 'naer', 'jayesh94nair@rediffmail.com', 'qwerty', '1994-02-09')";
 foreach ($stockArray as $stock){
-	addStockDetails($stock);
+	addStockDetails($con, $stock);
 }
-function addStockDetails($stock){
+function addStockDetails($con, $stock){
 	$json = file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:$stock",NULL,NULL,4);
 	//print_r($jdata);
 	$data = json_decode($json,true);
 	//var_dump($data);
-	echo $data[0]['lt_dts'];
-	echo "<br>";
-	echo $data[0]['l_fix'];
-	echo "<br>";
-	echo $data[0]['c_fix'];
-	echo "<br>";
-	echo $data[0]['cp_fix'];
-	echo "<br>";
-	echo $data[0]['pcls_fix'];
-	echo "<br>";
+	$datetime = $data[0]['lt_dts'];
+	//2017-03-03T15:53:27Z
+	$ltp = $data[0]['l_fix'];
+	$chg = $data[0]['c_fix'];
+	$chg_p = $data[0]['cp_fix'];
+	$p_close = $data[0]['pcls_fix'];
+	$sql = "INSERT INTO Daily$stock (ltp, chg, chg_p, p_close, stamp) VALUES ('$ltp', '$chg', '$chg_p', '$p_close', '$datetime')";
+	if (mysqli_query($con, $sql) ) {
+		echo "Values have been inserted successfully\r\n"."<br>";
+	}
+	else {
+		echo "Error in inserting details in  Daily$stock";
+	}
 }
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
