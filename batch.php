@@ -40,14 +40,15 @@ echo $low->fetch_object()->ltp;
 
 $sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE chg = '$close'";
 $close_chg = mysqli_query($con, $sql4);
-echo $close_chg."<br>";
+echo $close_chg->fetch_object()->chg;
 
 $sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE chg = '$close'";
 $close_cp = mysqli_query($con, $sql5);
-echo $close_cp."<br>";
+echo $close_cp->fetch_object()->chg_p;
 
 $sql6 = "SELECT DISTINCT stamp FROM Daily$stock WHERE chg = '$close'";
-$stamp = mysqli_query($con, $sql6);
+$stamp1 = mysqli_query($con, $sql6);
+$stamp = $stamp1->fetch_object()->stamp;
 $date = substr($stamp,0,10);
 echo $date."<br>";
 
