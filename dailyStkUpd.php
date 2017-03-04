@@ -26,7 +26,7 @@ function addStockDetails($con, $stock){
 	$p_close = $data[0]['pcls_fix'];
 	$sql = "INSERT INTO Daily$stock (ltp, chg, chg_p, p_close, stamp) VALUES ('$ltp', '$chg', '$chg_p', '$p_close', '$datetime')";
 	if (mysqli_query($con, $sql) ) {
-		echo "Values have been inserted successfully\r\n"."<br>";
+		echo "Values have been inserted successfully in Daily$stock"."<br>";
 	}
 	else {
 		echo "Error in inserting details in  Daily$stock";
