@@ -96,11 +96,13 @@ mysqli_multi_query($con,$sql);
 
 function deleteData($con, $stock){
 
-$sql .= "TRUNCATE TABLE Daily$stock;";
-$sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = 1";
-	
-// Execute multi query
-mysqli_multi_query($con,$sql);
+$sql = "TRUNCATE TABLE Daily$stock";
+	if (mysqli_query($con, $sql) ) {
+		echo "Daily$stock truncated successfully "."<br>";
+	}
+	else {
+		echo "Error in truncating Daily$stock";
+	}
 }
 
 mysqli_close($con) ;
