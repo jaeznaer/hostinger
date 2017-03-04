@@ -9,7 +9,9 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 
 $nse_stock = $_GET[ 'nse-stock' ] ;
 date_default_timezone_set("Asia/Kolkata");
-$sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock',date('Y-m-d'))";
+echo date('Y-m-d')."<br>";
+$date = date('Y-m-d');
+$sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock','$date')";
 
 //$result = mysqli_query($con,$sql);
 //$row = mysqli_fetch_array($result);
