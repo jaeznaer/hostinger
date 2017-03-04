@@ -30,7 +30,7 @@ $sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock','$date'
 if (@file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:" . $nse_stock)){
 	if (mysqli_query($con, $sql) ) {
 		echo "Values have been inserted successfully\r\n"."<br>";
-		createTables($nse_stock);
+		createTables($con, $nse_stock);
 	}
 	else {
 		echo "Error in inserting $nse_stock in  NseStocks";
@@ -39,7 +39,7 @@ if (@file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:"
 	echo "Stock not listed in NSE";
 }
 
-function createTables($nse_stock){
+function createTables($con, $nse_stock){
 	$daily = "Daily$nse_stock";
 	$sql = "CREATE TABLE $daily (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
