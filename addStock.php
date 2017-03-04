@@ -8,8 +8,8 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 //jaeznet.pe.hu/addStock.php?nse-stock=NIFTY
 
 $nse_stock = $_GET[ 'nse-stock' ] ;
-
-$sql = "INSERT INTO NseStocks (nse_stock_name) VALUES ('$nse_stock')";
+date_default_timezone_set("Asia/Kolkata");
+$sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock',date('Y-m-d'))";
 
 //$result = mysqli_query($con,$sql);
 //$row = mysqli_fetch_array($result);
