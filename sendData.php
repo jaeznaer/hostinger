@@ -7,6 +7,8 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 //$userName= $_GET[ 'userName' ] ;
 //$password= $_GET[ 'password' ] ;
 
+echo "Changes occured in Hostinger".<br/>
+
 $sql = "SELECT * FROM UserDetails";
 
 $result = mysqli_query($con,$sql);
