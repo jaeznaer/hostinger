@@ -9,7 +9,7 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 
 $nse_stock = $_GET[ 'nse-stock' ] ;
 
-$sql = "INSERT INTO NseStocks.nse_stock_name VALUE $nse_stock";
+$sql = "INSERT INTO NseStocks (nse_stock_name) VALUES ('$nse_stock')";
 
 //$result = mysqli_query($con,$sql);
 //$row = mysqli_fetch_array($result);
