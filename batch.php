@@ -74,7 +74,7 @@ $stockArray[6] = substr($stamp,0,10);
 foreach ($stockArray as $value){
 	echo $value."<br>";
 }
-	insNdelData($con, $stock, $stockArray);
+	insData($con, $stock, $stockArray);
 }
 
 function setIncrement($con, $stock){
@@ -88,20 +88,13 @@ mysqli_multi_query($con,$sql);
 	
 }
 
-function insNdelData($con, $stock, $stockArray){
+function insData($con, $stock, $stockArray){
 $sql = 	"INSERT INTO $stock (open, close, high, low, close_chg, close_cp, stamp) VALUES ('$stockArray[0]','$stockArray[1]','$stockArray[2]','$stockArray[3]','$stockArray[4]','$stockArray[5]','$stockArray[6]')";
 	if (mysqli_query($con, $sql) ) {
 		echo "Values inserted successfully to $stock"."<br>";
 	}
 	else {
 		echo "$stock details for $stockArray[6] already exists"."<br>";
-	}
-$sql = "TRUNCATE TABLE Daily$stock";
-	if (mysqli_query($con, $sql) ) {
-		echo "Daily$stock truncated successfully "."<br>";
-	}
-	else {
-		echo "Daily$stock is already truncated";
 	}
 }
 
