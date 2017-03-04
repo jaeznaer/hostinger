@@ -61,7 +61,8 @@ low FLOAT NOT NULL,
 close FLOAT NOT NULL,
 close_chg FLOAT NOT NULL,
 close_cp FLOAT NOT NULL,
-stamp DATE
+stamp DATE,
+UNIQUE (stamp)
 )";
 	mysqli_query($con, $sql);
 }
