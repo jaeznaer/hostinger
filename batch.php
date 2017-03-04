@@ -90,20 +90,8 @@ $sql .= "UPDATE Daily$stock SET Daily$stock.id = @count:= @count + 1;";
 $sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = 1";
 	
 // Execute multi query
-if (mysqli_multi_query($con,$sql))
-{
-  do
-    {
-    // Store first result set
-    if ($result=mysqli_store_result($con)) {
-      // Fetch one and one row
-     
-      // Free result set
-      mysqli_free_result($result);
-      }
-    }
-  while (mysqli_more_results($con));
-}
+mysqli_multi_query($con,$sql);
+	
 }
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
