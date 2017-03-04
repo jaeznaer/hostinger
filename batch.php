@@ -13,7 +13,7 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 foreach ($stockArray as $stock){
 	//setIncrement($con, $stock);
 	fetchData($con, $stock);
-	deleteData($con, $stock);
+	insNdelData($con, $stock);
 }
 
 function fetchData($con, $stock){
@@ -94,8 +94,14 @@ mysqli_multi_query($con,$sql);
 	
 }
 
-function deleteData($con, $stock){
-
+function insNdelData($con, $stock){
+$sql = 	"INSERT INTO $stock (open, close, high, low, close_chg, close_cp, stamp) VALUES ('$stockArray[0]','$stockArray[1]','$stockArray[2]','$stockArray[3]','$stockArray[4]','$stockArray[5]','$stockArray[6]')";
+	if (mysqli_query($con, $sql) ) {
+		echo "Values inserted successfully to $stock"."<br>";
+	}
+	else {
+		echo "Error in inserting data into $stock";
+	}
 $sql = "TRUNCATE TABLE Daily$stock";
 	if (mysqli_query($con, $sql) ) {
 		echo "Daily$stock truncated successfully "."<br>";
