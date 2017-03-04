@@ -29,12 +29,17 @@ $sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock','$date'
 if (@file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:" . $nse_stock)){
 	if (mysqli_query($con, $sql) ) {
 		echo "Values have been inserted successfully\r\n"."<br>";
+		createTables();
 	}
 	else {
 		echo "Error in running query";
 	}
 }else{
 	echo "Stock not listed in NSE";
+}
+
+function createTables(){
+	echo "Creating tables";
 }
 
 mysqli_close($con) ;
