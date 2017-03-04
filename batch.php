@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 }
 
 foreach ($stockArray as $stock){
-	setIncrement($con, $stock);
+	//setIncrement($con, $stock);
 	fetchData($con, $stock);
 	//deleteData($con, $stock);
 }
