@@ -16,7 +16,7 @@ foreach ($stockArray as $stock){
 function fetchData($con, $stock){
 
 $sql = "SELECT ltp FROM Daily$stock
-ORDER BY column_name ASC
+ORDER BY id ASC
 LIMIT 1";
 $open = mysqli_query($con, $sql);
 //$stockArray = Array();
@@ -24,7 +24,7 @@ $row = mysqli_fetch_array($open, MYSQL_ASSOC);
 echo $row['ltp'];
 
 $sql1 = "SELECT ltp FROM Daily$stock
-ORDER BY column_name DESC
+ORDER BY id DESC
 LIMIT 1";
 $close = mysqli_query($con, $sql1);
 echo $close."<br>";
