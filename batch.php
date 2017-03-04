@@ -93,10 +93,10 @@ $sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = 1";
 		do
 		{
 			// Store first result set
-			if ($result=mysqli_store_result($con))
+			if ($result=mysqli_store_result($con)){
 			// Free result set	    
 			mysqli_free_result($result);
-		
+			}
 		}
 		while (mysqli_next_result($con));
 			//echo "Values have been inserted successfully in $stock"."<br>";
