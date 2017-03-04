@@ -14,8 +14,10 @@ foreach ($stockArray as $stock){
 	addStockDetails($stock);
 }
 function addStockDetails($stock){
-	$jdata = file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:$stock",NULL,NULL,4);
-	print_r($jdata);
+	$json = file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:$stock",NULL,NULL,4);
+	//print_r($jdata);
+	$data = json_decode($json,true);
+	var_dump($data);
 }
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
