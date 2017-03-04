@@ -104,6 +104,7 @@ if (mysqli_multi_query($con,$sql))
     }
   while (mysqli_next_result($con));
 }
+}
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
 ?>
