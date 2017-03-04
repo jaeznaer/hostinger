@@ -11,8 +11,11 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 }
 //$sql = "INSERT INTO UserDetails (SrNo, FirstName, LastName, Email, Password, Date) VALUES (NULL, 'jaez', 'naer', 'jayesh94nair@rediffmail.com', 'qwerty', '1994-02-09')";
 foreach ($stockArray as $stock){
-	echo $stock."<br>";
+	addStockDetails($stock);
+}
+function addStockDetails($stock){
+	echo file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:$stock",NULL,NULL,4);
 }
 mysqli_close($con) ;
-echo "Connection to server closed successfully\r\n";
+//echo "Connection to server closed successfully\r\n";
 ?>
