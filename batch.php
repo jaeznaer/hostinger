@@ -13,7 +13,6 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 foreach ($stockArray as $stock){
 	//setIncrement($con, $stock);
 	fetchData($con, $stock);
-	insNdelData($con, $stock);
 }
 
 function fetchData($con, $stock){
@@ -75,12 +74,7 @@ $stockArray[6] = substr($stamp,0,10);
 foreach ($stockArray as $value){
 	echo $value."<br>";
 }
-//	if (mysqli_query($con, $sql) ) {
-//		echo "Values have been inserted successfully in $stock"."<br>";
-//	}
-//	else {
-//		echo "Error in inserting details in  $stock";
-//	}
+	insNdelData($con, $stock, $stockArray);
 }
 
 function setIncrement($con, $stock){
@@ -94,7 +88,7 @@ mysqli_multi_query($con,$sql);
 	
 }
 
-function insNdelData($con, $stock){
+function insNdelData($con, $stock, $stockArray){
 $sql = 	"INSERT INTO $stock (open, close, high, low, close_chg, close_cp, stamp) VALUES ('$stockArray[0]','$stockArray[1]','$stockArray[2]','$stockArray[3]','$stockArray[4]','$stockArray[5]','$stockArray[6]')";
 	if (mysqli_query($con, $sql) ) {
 		echo "Values inserted successfully to $stock"."<br>";
