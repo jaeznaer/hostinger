@@ -100,14 +100,14 @@ $sql = 	"INSERT INTO $stock (open, close, high, low, close_chg, close_cp, stamp)
 		echo "Values inserted successfully to $stock"."<br>";
 	}
 	else {
-		echo "Error in inserting data into $stock";
+		echo "$stock details for $stockArray[6] already exists"."<br>";
 	}
 $sql = "TRUNCATE TABLE Daily$stock";
 	if (mysqli_query($con, $sql) ) {
 		echo "Daily$stock truncated successfully "."<br>";
 	}
 	else {
-		echo "Error in truncating Daily$stock";
+		echo "Daily$stock is already truncated";
 	}
 }
 
