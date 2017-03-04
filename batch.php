@@ -13,7 +13,7 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 foreach ($stockArray as $stock){
 	setIncrement($con, $stock);
 	fetchData($con, $stock);
-	deleteData($con, $stock);
+	//deleteData($con, $stock);
 }
 
 function fetchData($con, $stock){
@@ -89,17 +89,20 @@ $sql = "SET @count = 0;";
 $sql .= "UPDATE Daily$stock SET Daily$stock.id = @count:= @count + 1;";
 $sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = 1";
 	
-if (mysqli_multi_query($con, $sql) ) {
- do
+// Execute multi query
+if (mysqli_multi_query($con,$sql))
+{
+  do
     {
     // Store first result set
-    if ($result=mysqli_store_result($con)) 
-    // Free result set	    
+    if ($result=mysqli_store_result($con)) {
+      // Fetch one and one row
+     
+      // Free result set
       mysqli_free_result($result);
       }
+    }
   while (mysqli_next_result($con));
-		//echo "Values have been inserted successfully in $stock"."<br>";
-	}
 }
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
