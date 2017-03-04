@@ -11,9 +11,9 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 }
 
 foreach ($stockArray as $stock){
-	setIncrement($con, $stock);
-	//fetchData($con, $stock);
-	//deleteData($con, $stock);
+	//setIncrement($con, $stock);
+	fetchData($con, $stock);
+	deleteData($con, $stock);
 }
 
 function fetchData($con, $stock){
@@ -93,6 +93,16 @@ $sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = 1";
 mysqli_multi_query($con,$sql);
 	
 }
+
+function deleteData($con, $stock){
+
+$sql .= "TRUNCATE TABLE Daily$stock;";
+$sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = 1";
+	
+// Execute multi query
+mysqli_multi_query($con,$sql);
+}
+
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
 ?>
