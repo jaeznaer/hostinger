@@ -13,11 +13,19 @@ $date = date('Y-m-d');
 $sql = "INSERT INTO NseStocks (nse_stock_name,date) VALUES ('$nse_stock','$date')";
 //echo file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:NIFTY",NULL,NULL,4);
 //echo "<br>";
+
+//To ignore errors, but this makes the statement TRUE even in if it is FALSE
 //$context = stream_context_create(array(
 //    'http' => array('ignore_errors' => true),
 //));
 //echo file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:" . $nse_stock, false, $context);
 //echo "<br>";
+
+//Handle file_get_contents error in php. Works like charm
+//Step 1: check the return code: if($content === FALSE) { // handle error here... }
+
+//Step 2: suppress the warning by putting an @ in front of the file_get_contents: $content = @file_get_contents($site);
+
 if (@file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:" . $nse_stock)){
 	if (mysqli_query($con, $sql) ) {
 		echo "Values have been inserted successfully\r\n"."<br>";
