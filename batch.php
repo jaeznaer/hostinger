@@ -13,47 +13,59 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 foreach ($stockArray as $stock){
 	fetchData($con, $stock);
 }
-function fetchData($con, $stock){
 
+function fetchData($con, $stock){
+$stockArray = Array();
+	
 $sql = "SELECT ltp FROM Daily$stock
 ORDER BY id ASC
 LIMIT 1";
 $open = mysqli_query($con, $sql);
-//$stockArray = Array();
 $row = mysqli_fetch_array($open, MYSQL_ASSOC);
-echo $row['ltp'];
+$stockArray[0]=$row['ltp'];
 
 $sql1 = "SELECT ltp FROM Daily$stock
 ORDER BY id DESC
 LIMIT 1";
 $close = mysqli_query($con, $sql1);
-echo $close."<br>";
+$row = mysqli_fetch_array($close, MYSQL_ASSOC);
+$stockArray[1]=$row['ltp'];
 
 $sql2 = "SELECT MAX(ltp) FROM Daily$stock";
 $high = mysqli_query($con, $sql2);
 //echo $high."<br>";
 //Object of class mysqli_result could not be converted to string
-echo $high->fetch_object()->ltp;
+//echo $high->fetch_object()->ltp;
+$row = mysqli_fetch_array($high, MYSQL_ASSOC);
+$stockArray[2]=$row['ltp'];
 
 $sql3 = "SELECT MIN(ltp) FROM Daily$stock";
 $low = mysqli_query($con, $sql3);
 //echo $low."<br>";
-echo $low->fetch_object()->ltp;
+$row = mysqli_fetch_array($low, MYSQL_ASSOC);
+$stockArray[3]=$row['ltp'];
 
 $sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE chg = '$close'";
 $close_chg = mysqli_query($con, $sql4);
-echo $close_chg->fetch_object()->chg;
+$row = mysqli_fetch_array($close_chg, MYSQL_ASSOC);
+$stockArray[4]=$row['chg'];
 
 $sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE chg = '$close'";
 $close_cp = mysqli_query($con, $sql5);
-echo $close_cp->fetch_object()->chg_p;
+$row = mysqli_fetch_array($close_cp, MYSQL_ASSOC);
+$stockArray[5]=$row['chg_p'];
 
 $sql6 = "SELECT DISTINCT stamp FROM Daily$stock WHERE chg = '$close'";
 $stamp1 = mysqli_query($con, $sql6);
-$stamp = $stamp1->fetch_object()->stamp;
+$row = mysqli_fetch_array($stamp1, MYSQL_ASSOC);
+$stockArray[6]=$row['stamp'];
+$stamp = $stockArray[6];
 $date = substr($stamp,0,10);
 echo $date."<br>";
 
+foreach ($stockArray as $value){
+	echo $value."<br>";
+}
 //	if (mysqli_query($con, $sql) ) {
 //		echo "Values have been inserted successfully in $stock"."<br>";
 //	}
