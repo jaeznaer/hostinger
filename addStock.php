@@ -11,18 +11,21 @@ $nse_stock = $_GET[ 'nse-stock' ] ;
 
 $sql = "INSERT INTO NseStocks.nse_stock_name VALUE $nse_stock";
 
-$result = mysqli_query($con,$sql);
-$row = mysqli_fetch_array($result);
-$data = $row[0];
+//$result = mysqli_query($con,$sql);
+//$row = mysqli_fetch_array($result);
+//$data = $row[0];
 
-if ($data) {
-	echo "yes";
-}
-else {
+//if ($data) {
+//	echo "yes";
+//}
+//else {
 	if (mysqli_query($con, $sql) ) {
 	echo "Values have been inserted successfully\r\n"."<br>";
 	}
-}
+	else {
+	echo "Error in running query";
+	}
+//}
 mysqli_close($con) ;
 //echo "Connected to server closed successfully\r\n";
 ?>		
