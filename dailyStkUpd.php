@@ -4,7 +4,7 @@ if (mysqli_connect_errno($con) ) {
 echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 }
 //echo "Connected to server successfully"."<br>";
-$result = mysql_query($con, "SELECT nse_stock_name FROM NseStocks");
+$result = mysql_query("SELECT nse_stock_name FROM NseStocks");
 $stockArray = Array();
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $stocks[] =  $row['nse_stock_name'];  
