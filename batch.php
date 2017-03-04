@@ -82,11 +82,20 @@ foreach ($stockArray as $value){
 //	}
 }
 function setIncrement($con, $stock){
-	$sql = "SET @count = 0;
-UPDATE Daily$stock SET Daily$stock.id = @count:= @count + 1;
-ALTER TABLE Daily$stock AUTO_INCREMENT = @count";
-	if (mysqli_query($con, $sql) ) {
-		echo "Values have been inserted successfully in $stock"."<br>";
+
+$sql = "SET @count = 0;";
+$sql .= "UPDATE Daily$stock SET Daily$stock.id = @count:= @count + 1;";
+$sql .= "ALTER TABLE Daily$stock AUTO_INCREMENT = @count";
+	if (mysqli_multi_query($con, $sql) ) {
+ do
+    {
+    // Store first result set
+    if ($result=mysqli_store_result($con)) {
+      mysqli_free_result($result);
+      }
+    }
+  while (mysqli_next_result($con));
+		//echo "Values have been inserted successfully in $stock"."<br>";
 	}
 	else {
 		echo "Error in inserting details in  $stock";
