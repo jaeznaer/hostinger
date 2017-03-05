@@ -13,7 +13,7 @@ while ($row = mysqli_fetch_array($result))
 		$data[] = $row;
 }
 
-print(json_encode($data));
+print(json_encode($data, JSON_FORCE_OBJECT));
 
 mysqli_close($con) ;
 ?>		
