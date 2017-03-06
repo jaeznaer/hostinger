@@ -18,10 +18,19 @@ foreach ($stockArray as $stock){
 function fetchData($con, $stock){
 $stockArray = Array();
 	
-$sql = "SELECT ltp FROM Daily$stock
+$sql = "SELECT stamp FROM Daily$stock
+ORDER BY id DESC
+LIMIT 1";
+$todayStamp = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($todayStamp, MYSQL_ASSOC);
+$currentStamp=$row['stamp'];
+$date = substr($currentStamp,0,10);
+
+$sql0 = "SELECT ltp FROM Daily$stock
+WHERE stamp LIKE '$date%'
 ORDER BY id ASC
 LIMIT 1";
-$open = mysqli_query($con, $sql);
+$open = mysqli_query($con, $sql0);
 $row = mysqli_fetch_array($open, MYSQL_ASSOC);
 $stockArray[0]=$row['ltp'];
 //echo $stockArray[0]."<br>";
@@ -34,20 +43,20 @@ $row = mysqli_fetch_array($close, MYSQL_ASSOC);
 $stockArray[1]=$row['ltp'];
 //	echo $stockArray[1]."<br>";
 
-$sql2 = "SELECT MAX(ltp) AS highPrice FROM Daily$stock";
+$sql2 = "SELECT MAX(ltp) AS highPrice FROM Daily$stock WHERE stamp LIKE '$date%'";
 $high = mysqli_query($con, $sql2);
 //echo $high."<br>";
 //Object of class mysqli_result could not be converted to string
 //echo $high->fetch_object()->ltp;
 $row = mysqli_fetch_array($high, MYSQL_ASSOC);
-$stockArray[2]=$row['highPrice'];
+$stockArray[2]=round($row['highPrice'],3);
 //	echo $stockArray[2]."<br>";
 
-$sql3 = "SELECT MIN(ltp) AS lowPrice FROM Daily$stock";
+$sql3 = "SELECT MIN(ltp) AS lowPrice FROM Daily$stock WHERE stamp LIKE '$date%'";
 $low = mysqli_query($con, $sql3);
 //echo $low."<br>";
 $row = mysqli_fetch_array($low, MYSQL_ASSOC);
-$stockArray[3]=$row['lowPrice'];
+$stockArray[3]=round($row['lowPrice'],3);
 //	echo $stockArray[3]."<br>";
 
 $closePrice = round($stockArray[1],3);
