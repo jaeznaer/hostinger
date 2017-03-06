@@ -48,14 +48,14 @@ $high = mysqli_query($con, $sql2);
 //Object of class mysqli_result could not be converted to string
 //echo $high->fetch_object()->ltp;
 $row = mysqli_fetch_array($high, MYSQL_ASSOC);
-$stockArray[2]=$row['highPrice'];
+$stockArray[2]=round($row['highPrice'],3);
 	echo $stockArray[2]."<br>";
 	
 $sql3 = "SELECT MIN(ltp) AS lowPrice FROM Daily$stock WHERE stamp LIKE '$date%'";
 $low = mysqli_query($con, $sql3);
 //echo $low."<br>";
 $row = mysqli_fetch_array($low, MYSQL_ASSOC);
-$stockArray[3]=$row['lowPrice'];
+$stockArray[3]=round($row['lowPrice'],3);
 	echo $stockArray[3]."<br>";
 	
 $closePrice = round($stockArray[1],3);
