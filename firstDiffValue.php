@@ -22,10 +22,11 @@ LIMIT 1";
 $todayStamp = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($todayStamp, MYSQL_ASSOC);
 $currentStamp=$row['stamp'];
-echo $currentStamp."<br>";
+$date = substr($currentStamp,0,10);
+echo $date."<br>";
 
 $sql0 = "SELECT ltp FROM Daily$stock
-WHERE stamp = '$currentStamp'
+WHERE stamp LIKE '$date%'
 ORDER BY id ASC
 LIMIT 1";
 $open = mysqli_query($con, $sql0);
@@ -41,7 +42,7 @@ $row = mysqli_fetch_array($close, MYSQL_ASSOC);
 $stockArray[1]=$row['ltp'];
 	echo $stockArray[1]."<br>";
 	
-$sql2 = "SELECT MAX(ltp) AS highPrice FROM Daily$stock WHERE stamp = '$currentStamp'";
+$sql2 = "SELECT MAX(ltp) AS highPrice FROM Daily$stock WHERE stamp LIKE '$date%'";
 $high = mysqli_query($con, $sql2);
 //echo $high."<br>";
 //Object of class mysqli_result could not be converted to string
@@ -50,7 +51,7 @@ $row = mysqli_fetch_array($high, MYSQL_ASSOC);
 $stockArray[2]=$row['highPrice'];
 	echo $stockArray[2]."<br>";
 	
-$sql3 = "SELECT MIN(ltp) AS lowPrice FROM Daily$stock WHERE stamp = '$currentStamp'";
+$sql3 = "SELECT MIN(ltp) AS lowPrice FROM Daily$stock WHERE stamp LIKE '$date%'";
 $low = mysqli_query($con, $sql3);
 //echo $low."<br>";
 $row = mysqli_fetch_array($low, MYSQL_ASSOC);
