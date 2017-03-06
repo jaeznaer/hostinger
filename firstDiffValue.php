@@ -29,7 +29,6 @@ WHERE stamp = '$currentStamp'
 ORDER BY id ASC
 LIMIT 1";
 $open = mysqli_query($con, $sql0);
-	
 $row = mysqli_fetch_array($open, MYSQL_ASSOC);
 $stockArray[0]=$row['ltp'];
 echo $stockArray[0]."<br>";
@@ -65,11 +64,13 @@ $close_chg = mysqli_query($con, $sql4);
 $row = mysqli_fetch_array($close_chg, MYSQL_ASSOC);
 $stockArray[4]=$row['chg'];
 	echo $stockArray[4]."<br>";
+	
 $sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
 $close_cp = mysqli_query($con, $sql5);
 $row = mysqli_fetch_array($close_cp, MYSQL_ASSOC);
 $stockArray[5]=$row['chg_p'];
 	echo $stockArray[5]."<br>";
+	
 $sql6 = "SELECT DISTINCT stamp FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
 $stamp1 = mysqli_query($con, $sql6);
 $row = mysqli_fetch_array($stamp1, MYSQL_ASSOC);
