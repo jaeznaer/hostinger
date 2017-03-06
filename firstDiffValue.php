@@ -24,11 +24,11 @@ $row = mysqli_fetch_array($todayStamp, MYSQL_ASSOC);
 $currentStamp=$row['stamp'];
 echo $currentStamp."<br>";
 
-$sql = "SELECT ltp FROM Daily$stock
+$sql9 = "SELECT ltp FROM Daily$stock
 WHERE stamp = $currentStamp
 ORDER BY id ASC
 LIMIT 1";
-$open = mysqli_query($con, $sql);
+$open = mysqli_query($con, $sql9);
 $row = mysqli_fetch_array($open, MYSQL_ASSOC);
 $stockArray[0]=$row['ltp'];
 echo $stockArray[0]."<br>";
