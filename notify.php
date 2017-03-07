@@ -49,4 +49,4 @@
             $regId = isset($_GET['regId']) ? $_GET['regId'] : '';
             $response = $firebase->send($regId, $json);
         }
-        ?>
+?>
