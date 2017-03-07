@@ -4,7 +4,7 @@ if (mysqli_connect_errno($con) ) {
 echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 }
 
-$sql = "SELECT * FROM NseStocks ORDER BY nse_stock_name";
+$sql = "SELECT * FROM NseStocks ORDER BY nse_stock_name DESC";
 
 $result = mysqli_query($con,$sql);
 
