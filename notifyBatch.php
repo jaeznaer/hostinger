@@ -44,7 +44,12 @@ else if (!in_array("low", $chgRes)) {
     echo $stock." All High <br>";
 }
 else {	
-	echo $stock." ".$chgRes[2]." ".$chgRes[1]." ".$chgRes[0]."<br>";
+	//echo $stock." ".$chgRes[2]." ".$chgRes[1]." ".$chgRes[0]."<br>";
+	echo $stock;
+	for ($i = count($chgRes) ; $i >= 0; $i--){
+		echo " ".$chgRes[$i];
+	}
+	echo "<br>";
 	//foreach ($chgRes as $value){
 	//	echo $value."<br>";
 	//}
