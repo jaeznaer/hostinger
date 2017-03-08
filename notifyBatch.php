@@ -44,10 +44,10 @@ else if (!in_array("low", $chgRes)) {
     echo $stock." All High <br>";
 }
 else {	
-	echo $stock."<br>";
-	foreach ($chgRes as $value){
-		echo $value."<br>";
-	}
+	echo $stock." ".$chgRes[2]." ".$chgRes[1]." ".$chgRes[0]."<br>";
+	//foreach ($chgRes as $value){
+	//	echo $value."<br>";
+	//}
 }
 }
 mysqli_close($con) ;
