@@ -41,7 +41,7 @@ if (!in_array("high", $chgRes)) {
     echo $stock." All Low <br>";
 }
 else if (!in_array("low", $chgRes)) {
-    echo $stock" All High <br>";
+    echo $stock." All High <br>";
 }
 else {	
 	echo $stock."<br>";
