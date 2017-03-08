@@ -27,7 +27,11 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 
 $chgRes = Array();
 foreach ($chgArray as $chg){
-	if (1/$chg < 0){
+	
+	if ($chg == 0){
+		$chgRes[] = "same";
+	}
+	else if (1/$chg < 0){
 		$chgRes[] = "low";
 	}else{
 		$chgRes[] = "high";
