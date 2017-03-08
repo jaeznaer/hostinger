@@ -27,19 +27,20 @@ while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 
 $chgRes = Array();
 foreach ($chgArray as $chg){
-	if (1/$chg > 0){
-		$chgRes[] = "high";
-	}else{
+	if (1/$chg < 0){
 		$chgRes[] = "low";
+	}else{
+		$chgRes[] = "high";
 	}
 }
 if (!in_array("high", $chgRes)) {
-    echo "All Low <br>";
+    echo $stock." All Low <br>";
 }
 else if (!in_array("low", $chgRes)) {
-    echo "All High <br>";
+    echo $stock" All High <br>";
 }
-else {
+else {	
+	echo $stock."<br>";
 	foreach ($chgRes as $value){
 		echo $value."<br>";
 	}
