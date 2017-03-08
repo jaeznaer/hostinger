@@ -44,6 +44,7 @@ else {
 		echo $value."<br>";
 	}
 }
-
+}
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
+?>
