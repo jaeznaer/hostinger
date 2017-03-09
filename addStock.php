@@ -61,6 +61,7 @@ low FLOAT NOT NULL,
 close FLOAT NOT NULL,
 close_chg FLOAT NOT NULL,
 close_cp FLOAT NOT NULL,
+pcls FLOAT NOT NULL,
 stamp DATE,
 UNIQUE (stamp)
 )";
