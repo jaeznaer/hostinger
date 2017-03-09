@@ -61,25 +61,42 @@ $stockArray[3]=round($row['lowPrice'],3);
 
 $closePrice = round($stockArray[1],3);
 	
-$sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
+//$sql4 = "SELECT DISTINCT chg FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
+$sql4 = "SELECT chg FROM Daily$stock
+ORDER BY id DESC
+LIMIT 1";
 $close_chg = mysqli_query($con, $sql4);
 $row = mysqli_fetch_array($close_chg, MYSQL_ASSOC);
 $stockArray[4]=$row['chg'];
 //	echo $stockArray[4]."<br>";
 
-$sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
+//$sql5 = "SELECT DISTINCT chg_p FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
+$sql5 = "SELECT chg_p FROM Daily$stock
+ORDER BY id DESC
+LIMIT 1";
 $close_cp = mysqli_query($con, $sql5);
 $row = mysqli_fetch_array($close_cp, MYSQL_ASSOC);
 $stockArray[5]=$row['chg_p'];
 //	echo $stockArray[5]."<br>";
 
-$sql6 = "SELECT DISTINCT stamp FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
+//$sql6 = "SELECT DISTINCT stamp FROM Daily$stock WHERE ROUND(ltp,3) = '$closePrice'";
+$sql6 = "SELECT stamp FROM Daily$stock
+ORDER BY id DESC
+LIMIT 1";
 $stamp1 = mysqli_query($con, $sql6);
 $row = mysqli_fetch_array($stamp1, MYSQL_ASSOC);
 $stamp=$row['stamp'];
 $stockArray[6] = substr($stamp,0,10);
 //	echo $stockArray[6]."<br>";
-	
+
+$sql7 = "SELECT p_close FROM Daily$stock
+ORDER BY id DESC
+LIMIT 1";
+$pcls = mysqli_query($con, $sql7);
+$row = mysqli_fetch_array($pcls, MYSQL_ASSOC);
+$stockArray[7]=$row['p_close'];
+//	echo $stockArray[7]."<br>";
+
 foreach ($stockArray as $value){
 	echo $value."<br>";
 }
@@ -98,7 +115,7 @@ mysqli_multi_query($con,$sql);
 }
 
 function insData($con, $stock, $stockArray){
-$sql = 	"INSERT INTO $stock (open, close, high, low, close_chg, close_cp, stamp) VALUES ('$stockArray[0]','$stockArray[1]','$stockArray[2]','$stockArray[3]','$stockArray[4]','$stockArray[5]','$stockArray[6]')";
+$sql = 	"INSERT INTO $stock (open, close, high, low, close_chg, close_cp, pcls, stamp) VALUES ('$stockArray[0]','$stockArray[1]','$stockArray[2]','$stockArray[3]','$stockArray[4]','$stockArray[5]','$stockArray[7]','$stockArray[6]')";
 	if (mysqli_query($con, $sql) ) {
 		echo "Values inserted successfully to $stock"."<br>";
 	}
