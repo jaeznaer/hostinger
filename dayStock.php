@@ -6,7 +6,7 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 
 //jaeznet.pe.hu/dayStock.php?nse-stock=NIFTY
 
-$nse_stock = $_GET[ 'nse-stock' ] ; 
+$nse_stock = strtoupper($_GET[ 'nse-stock' ] ); 
 
 $sql = "SELECT open, high, low, close, close_chg, close_cp, stamp FROM $nse_stock";
 
