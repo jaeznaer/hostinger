@@ -31,7 +31,9 @@ $sql = "DELETE FROM NseStocks
 
 
 	if (mysqli_query($con, $sql) ) {
-		dropTables($con, $nse_stock);
+		//dropTables($con, $nse_stock);
+		// Instead write code for deleting stocks from user NseStocks table
+		
 		echo "$nse_stock removed successfully from your NSE stock list";
 	}
 	else {
