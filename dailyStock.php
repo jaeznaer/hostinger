@@ -8,7 +8,7 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 
 $nse_stock = strtoupper($_GET[ 'nse-stock' ] );
 
-$sql = "SELECT ltp, chg, chg_p, p_close, stamp FROM Daily$nse_stock";
+$sql = "SELECT ltp, chg, chg_p, p_close, stamp FROM Daily$nse_stock ORDER BY id";
 
 $result = mysqli_query($con,$sql);
 
