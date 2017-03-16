@@ -7,7 +7,8 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error() ;
 $result = mysqli_query($con,"SELECT nse_stock_name FROM NseStocks");
 $stockArray = Array();
 while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
-    $stockArray[] =  $row['nse_stock_name'];  
+    $stockArray[] =  $row['nse_stock_name']; 
+	echo $row['nse_stock_name']."<br>"; 
 }
 
 foreach ($stockArray as $stock){
