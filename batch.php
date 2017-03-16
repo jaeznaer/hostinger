@@ -33,7 +33,7 @@ LIMIT 1";
 $open = mysqli_query($con, $sql0);
 $row = mysqli_fetch_array($open, MYSQL_ASSOC);
 $stockArray[0]=$row['ltp'];
-//echo $stockArray[0]."<br>";
+echo $stockArray[0]." open <br>";
 
 $sql1 = "SELECT ltp FROM Daily$stock
 ORDER BY id DESC
