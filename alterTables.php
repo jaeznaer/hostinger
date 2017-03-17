@@ -23,7 +23,8 @@ $stockArray = Array();
 	
 //$sql = "ALTER TABLE Daily$stock MODIFY ltp float NOT NULL";
 //$sql = "ALTER TABLE $stock MODIFY open float NOT NULL";
-$sql = "INSERT INTO $stock VALUES (NULL)";
+//$sql = "INSERT INTO $stock VALUES (NULL)";
+$sql = "DELETE FROM $stock WHERE open = 0";
 
 //if(mysqli_multi_query($con, $sql)){
 if(mysqli_query($con, $sql)){
