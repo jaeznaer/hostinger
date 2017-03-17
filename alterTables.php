@@ -21,12 +21,12 @@ function alterTable($con, $stock){
 	//ALTER TABLE Person MODIFY P_Id INT(11) NOT NULL;
 $stockArray = Array();
 	
-$sql = "ALTER TABLE Daily$stock MODIFY ltp float NOT NULL";
-//$sql .= "ALTER TABLE $stock MODIFY open float NOT NULL";
+//$sql = "ALTER TABLE Daily$stock MODIFY ltp float NOT NULL";
+$sql = "ALTER TABLE $stock MODIFY open float NOT NULL";
 
 //if(mysqli_multi_query($con, $sql)){
 if(mysqli_query($con, $sql)){
-	echo "Tables altered for Daily$stock <br>";
+	echo "Tables altered for $stock <br>";
 }else{
 	echo "$stock error running query <br>";
 }
