@@ -14,6 +14,7 @@ foreach ($stockArray as $stock){
 	addStockDetails($con, $stock);
 }
 function addStockDetails($con, $stock){
+	$url = "http://finance.google.com/finance/info?client=ig&q=NSE:$stock";
 	$json = file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:$stock",NULL,NULL,4);
 	//print_r($jdata);
 	$data = json_decode($json,true);
