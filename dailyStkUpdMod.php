@@ -21,12 +21,13 @@ function addStockDetails($con, $stock){
 	curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 	curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
 	//curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Your application name');
-	$json = curl_exec($curl_handle);
+	$json1 = curl_exec($curl_handle);
 	curl_close($curl_handle);
 	//print_r($jdata);
-	print_r($json);
+        $json = substr($json1,3);
+	//print_r($json);
 	$data = json_decode($json,true);
-	var_dump($data);
+	//var_dump($data);
 	$datetime = $data[0]['lt_dts'];
 	//2017-03-03T15:53:27Z
 	$ltp = $data[0]['l_fix'];
@@ -51,3 +52,4 @@ function addStockDetails($con, $stock){
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
 ?>
+	
