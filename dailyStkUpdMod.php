@@ -24,6 +24,7 @@ function addStockDetails($con, $stock){
 	$json = curl_exec($curl_handle);
 	curl_close($curl_handle);
 	//print_r($jdata);
+	print_r($json);
 	$data = json_decode($json,true);
 	var_dump($data);
 	$datetime = $data[0]['lt_dts'];
