@@ -25,11 +25,11 @@ $sql = "ALTER TABLE Daily$stock MODIFY ltp float NOT NULL;ALTER TABLE $stock MOD
 
 
 if(mysqli_multi_query($con, $sql)){
-	echo "Vause inserted in Daily$stock";
+	echo "Values inserted in Daily$stock";
 }else{
 	echo "Error running query";
 }
-
+}
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
 ?>
