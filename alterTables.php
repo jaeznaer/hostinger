@@ -25,7 +25,7 @@ $sql = "ALTER TABLE Daily$stock MODIFY ltp float NOT NULL;ALTER TABLE $stock MOD
 
 
 if(mysqli_multi_query($con, $sql)){
-	echo "Values inserted in Daily$stock";
+	echo "Tables altered for $stock";
 }else{
 	echo "Error running query";
 }
