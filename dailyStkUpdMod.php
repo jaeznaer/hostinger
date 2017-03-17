@@ -15,17 +15,17 @@ foreach ($stockArray as $stock){
 }
 function addStockDetails($con, $stock){
 	$url = "http://finance.google.com/finance/info?client=ig&q=NSE:$stock";
-	$json = file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:$stock",NULL,NULL,4);
+	//$json = file_get_contents("http://finance.google.com/finance/info?client=ig&q=NSE:$stock",NULL,NULL,4);
 	$curl_handle=curl_init();
 	curl_setopt($curl_handle, CURLOPT_URL,'http://###.##.##.##/mp/get?mpsrc=http://mybucket.s3.amazonaws.com/11111.mpg&mpaction=convert format=flv');
 	curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 	curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Your application name');
-	$query = curl_exec($curl_handle);
+	//curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Your application name');
+	$json = curl_exec($curl_handle);
 	curl_close($curl_handle);
 	//print_r($jdata);
 	$data = json_decode($json,true);
-	//var_dump($data);
+	var_dump($data);
 	$datetime = $data[0]['lt_dts'];
 	//2017-03-03T15:53:27Z
 	$ltp = $data[0]['l_fix'];
