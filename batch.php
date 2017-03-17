@@ -33,7 +33,7 @@ LIMIT 1";
 $open = mysqli_query($con, $sql0);
 $row = mysqli_fetch_array($open, MYSQL_ASSOC);
 $stockArray[0]=$row['ltp'];
-echo $stockArray[0]." open <br>";
+//echo $stockArray[0]." open <br>";
 
 $sql1 = "SELECT ltp FROM Daily$stock
 ORDER BY id DESC
@@ -115,15 +115,21 @@ mysqli_multi_query($con,$sql);
 }
 
 function insData($con, $stock, $stockArray){
-$sql = 	"INSERT INTO $stock (open, close, high, low, close_chg, close_cp, pcls, stamp) VALUES ('$stockArray[0]','$stockArray[1]','$stockArray[2]','$stockArray[3]','$stockArray[4]','$stockArray[5]','$stockArray[7]','$stockArray[6]')";
-	if (mysqli_query($con, $sql) ) {
-		echo "Values inserted successfully to $stock"."<br>";
-	}
-	else {
-		echo "$stock details for $stockArray[6] already exists"."<br>";
-	}
+
+if ($stockArray[0] <> 0){
+        $sql = 	"INSERT INTO $stock (open, close, high, low, close_chg, close_cp, pcls, stamp) VALUES ('$stockArray[0]','$stockArray[1]','$stockArray[2]','$stockArray[3]','$stockArray[4]','$stockArray[5]','$stockArray[7]','$stockArray[6]')";
+	        if (mysqli_query($con, $sql) ) {
+		        echo "Values inserted successfully to $stock"."<br>";
+	        }
+	        else {
+		        echo "$stock details for $stockArray[6] already exists"."<br>";
+	        }
+}
+else {
+        echo "$stock open = 0 table not updated <br>";
 }
 
+}
 mysqli_close($con) ;
 //echo "Connection to server closed successfully\r\n";
 ?>
